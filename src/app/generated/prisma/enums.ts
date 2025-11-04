@@ -17,10 +17,10 @@ export const MemberRole = {
 export type MemberRole = (typeof MemberRole)[keyof typeof MemberRole]
 
 
-export const ChannelTpe = {
+export const ChannelType = {
   TEXT: 'TEXT',
   AUDIO: 'AUDIO',
   VIDEO: 'VIDEO'
 } as const
 
-export type ChannelTpe = (typeof ChannelTpe)[keyof typeof ChannelTpe]
+export type ChannelType = (typeof ChannelType)[keyof typeof ChannelType]

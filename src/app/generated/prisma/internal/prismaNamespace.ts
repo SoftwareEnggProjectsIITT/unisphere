@@ -863,16 +863,16 @@ export type ListEnumMemberRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
- * Reference to a field of type 'ChannelTpe'
+ * Reference to a field of type 'ChannelType'
  */
-export type EnumChannelTpeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ChannelTpe'>
+export type EnumChannelTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ChannelType'>
     
 
 
 /**
- * Reference to a field of type 'ChannelTpe[]'
+ * Reference to a field of type 'ChannelType[]'
  */
-export type ListEnumChannelTpeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ChannelTpe[]'>
+export type ListEnumChannelTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ChannelType[]'>
     
 
 
