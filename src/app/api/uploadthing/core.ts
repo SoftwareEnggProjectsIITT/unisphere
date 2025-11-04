@@ -3,17 +3,13 @@ import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 
 const f = createUploadthing();
-console.log("core.ts is loaded");
 
 const handleAuth = async () => {
   const user = await currentUser();
 
-  console.log("User:", user);
-
   if (!user) {
     throw new UploadThingError({ code: "FORBIDDEN" });
   }
-  console.log("Authenticated user ID:", user.id);
 
   return { userId: user.id };
 };

@@ -71,7 +71,7 @@ model Member {
   @@index([serverId])
 }
 
-enum ChannelTpe {
+enum ChannelType {
   TEXT
   AUDIO
   VIDEO
