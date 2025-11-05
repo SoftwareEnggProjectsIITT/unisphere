@@ -5,7 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 
-const font = Open_Sans({ subsets: ['latin'] })
+const font = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Unisphere",
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <ClerkProvider>
+      <ClerkProvider afterSignOutUrl="/">
         <body className={cn(font.className, "bg-white dark:bg-gray-900")}>
           <ThemeProvider
             attribute="class"
