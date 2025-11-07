@@ -22,7 +22,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "/home/piyush/Coding/projects/unisphere/src/app/generated/prisma",
+      "value": "/home/nillanjan/Nillanjan/unisphere/src/app/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -37,7 +37,7 @@ const config: runtime.GetPrismaClientConfig = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/piyush/Coding/projects/unisphere/prisma/schema.prisma",
+    "sourceFilePath": "/home/nillanjan/Nillanjan/unisphere/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../../../../prisma",
