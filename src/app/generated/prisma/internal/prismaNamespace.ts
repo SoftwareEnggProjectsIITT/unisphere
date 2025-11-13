@@ -395,7 +395,8 @@ export const ModelName = {
   Channel: 'Channel',
   Message: 'Message',
   Conversation: 'Conversation',
-  DirectMessage: 'DirectMessage'
+  DirectMessage: 'DirectMessage',
+  Confession: 'Confession'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -411,7 +412,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "profile" | "server" | "member" | "channel" | "message" | "conversation" | "directMessage"
+    modelProps: "profile" | "server" | "member" | "channel" | "message" | "conversation" | "directMessage" | "confession"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -933,6 +934,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Confession: {
+      payload: Prisma.$ConfessionPayload<ExtArgs>
+      fields: Prisma.ConfessionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ConfessionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfessionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ConfessionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfessionPayload>
+        }
+        findFirst: {
+          args: Prisma.ConfessionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfessionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ConfessionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfessionPayload>
+        }
+        findMany: {
+          args: Prisma.ConfessionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfessionPayload>[]
+        }
+        create: {
+          args: Prisma.ConfessionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfessionPayload>
+        }
+        createMany: {
+          args: Prisma.ConfessionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ConfessionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfessionPayload>[]
+        }
+        delete: {
+          args: Prisma.ConfessionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfessionPayload>
+        }
+        update: {
+          args: Prisma.ConfessionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfessionPayload>
+        }
+        deleteMany: {
+          args: Prisma.ConfessionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ConfessionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ConfessionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfessionPayload>[]
+        }
+        upsert: {
+          args: Prisma.ConfessionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfessionPayload>
+        }
+        aggregate: {
+          args: Prisma.ConfessionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateConfession>
+        }
+        groupBy: {
+          args: Prisma.ConfessionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ConfessionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ConfessionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ConfessionCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1060,6 +1135,18 @@ export const DirectMessageScalarFieldEnum = {
 export type DirectMessageScalarFieldEnum = (typeof DirectMessageScalarFieldEnum)[keyof typeof DirectMessageScalarFieldEnum]
 
 
+export const ConfessionScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  theme: 'theme',
+  bgImage: 'bgImage',
+  likeCount: 'likeCount',
+  createdAt: 'createdAt'
+} as const
+
+export type ConfessionScalarFieldEnum = (typeof ConfessionScalarFieldEnum)[keyof typeof ConfessionScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1154,6 +1241,20 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
+ * Reference to a field of type 'Theme'
+ */
+export type EnumThemeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Theme'>
+    
+
+
+/**
+ * Reference to a field of type 'Theme[]'
+ */
+export type ListEnumThemeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Theme[]'>
+    
+
+
+/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -1164,6 +1265,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
@@ -1260,6 +1375,7 @@ export type GlobalOmitConfig = {
   message?: Prisma.MessageOmit
   conversation?: Prisma.ConversationOmit
   directMessage?: Prisma.DirectMessageOmit
+  confession?: Prisma.ConfessionOmit
 }
 
 /* Types for Logging */

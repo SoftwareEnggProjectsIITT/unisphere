@@ -24,3 +24,14 @@ export const ChannelType = {
 } as const
 
 export type ChannelType = (typeof ChannelType)[keyof typeof ChannelType]
+
+
+export const Theme = {
+  LOVE: 'LOVE',
+  REGRET: 'REGRET',
+  FUNNY: 'FUNNY',
+  STRESS: 'STRESS',
+  RANDOM: 'RANDOM'
+} as const
+
+export type Theme = (typeof Theme)[keyof typeof Theme]

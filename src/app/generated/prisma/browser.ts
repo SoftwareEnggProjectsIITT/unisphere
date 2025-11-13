@@ -51,3 +51,8 @@ export type Conversation = Prisma.ConversationModel
  * 
  */
 export type DirectMessage = Prisma.DirectMessageModel
+/**
+ * Model Confession
+ * 
+ */
+export type Confession = Prisma.ConfessionModel

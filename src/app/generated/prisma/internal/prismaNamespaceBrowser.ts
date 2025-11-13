@@ -54,7 +54,8 @@ export const ModelName = {
   Channel: 'Channel',
   Message: 'Message',
   Conversation: 'Conversation',
-  DirectMessage: 'DirectMessage'
+  DirectMessage: 'DirectMessage',
+  Confession: 'Confession'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -159,6 +160,18 @@ export const DirectMessageScalarFieldEnum = {
 } as const
 
 export type DirectMessageScalarFieldEnum = (typeof DirectMessageScalarFieldEnum)[keyof typeof DirectMessageScalarFieldEnum]
+
+
+export const ConfessionScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  theme: 'theme',
+  bgImage: 'bgImage',
+  likeCount: 'likeCount',
+  createdAt: 'createdAt'
+} as const
+
+export type ConfessionScalarFieldEnum = (typeof ConfessionScalarFieldEnum)[keyof typeof ConfessionScalarFieldEnum]
 
 
 export const SortOrder = {
