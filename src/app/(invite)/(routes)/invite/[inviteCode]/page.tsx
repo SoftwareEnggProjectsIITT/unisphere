@@ -1,33 +1,35 @@
-import { currentProfile } from "@/lib/current-profile"
-import { db } from "@/lib/db"
-import { RedirectToSignIn } from "@clerk/nextjs"
-import { redirect } from "next/navigation"
+import { authentication, currentProfile } from "@/lib/current-profile";
+import { db } from "@/lib/db";
+import { redirect } from "next/navigation";
 
-
-const InviteCodePage = async ({ params }: { params: Promise<{ inviteCode: string }>; }) => {
-  const profile = await currentProfile()
+const InviteCodePage = async ({
+  params,
+}: {
+  params: Promise<{ inviteCode: string }>;
+}) => {
+  const profile = await currentProfile();
 
   const myparams = await params;
 
   if (!profile) {
-    return <RedirectToSignIn />
+    return authentication.redirectToSignIn();
   }
   if (!myparams.inviteCode) {
-    return redirect('/')
+    return redirect("/");
   }
   const existingServer = await db.server.findFirst({
     where: {
       inviteCode: myparams.inviteCode,
       members: {
         some: {
-          profileId: profile.id
-        }
-      }
-    }
-  })
+          profileId: profile.id,
+        },
+      },
+    },
+  });
 
   if (existingServer) {
-    return redirect(`/servers/${existingServer.id}`)
+    return redirect(`/servers/${existingServer.id}`);
   }
 
   const server = await db.server.update({
@@ -39,18 +41,17 @@ const InviteCodePage = async ({ params }: { params: Promise<{ inviteCode: string
         create: [
           {
             profileId: profile.id,
-          }
-        ]
-      }
-    }
-  })
+          },
+        ],
+      },
+    },
+  });
 
   if (server) {
-    return redirect(`/servers/${server.id}`)
+    return redirect(`/servers/${server.id}`);
   }
 
-
   return null;
-}
+};
 
-export default InviteCodePage
+export default InviteCodePage;
