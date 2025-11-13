@@ -38,8 +38,8 @@ export { Prisma }
 
 
 // file annotations for bundling tools to include these files
-path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node")
-path.join(process.cwd(), "src/app/generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node")
+path.join(__dirname, "query_engine-windows.dll.node")
+path.join(process.cwd(), "src/app/generated/prisma/query_engine-windows.dll.node")
 
 /**
  * Model Profile
@@ -61,3 +61,18 @@ export type Member = Prisma.MemberModel
  * 
  */
 export type Channel = Prisma.ChannelModel
+/**
+ * Model Message
+ * 
+ */
+export type Message = Prisma.MessageModel
+/**
+ * Model Conversation
+ * 
+ */
+export type Conversation = Prisma.ConversationModel
+/**
+ * Model DirectMessage
+ * 
+ */
+export type DirectMessage = Prisma.DirectMessageModel

@@ -36,3 +36,34 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ server
 
   }
 }
+
+export async function DELETE(req: Request, { params }: { params: Promise<{ serverId: string }>; }) {
+  try {
+    const myparams = await params
+    const profile = await currentProfile()
+
+    if (!profile) {
+      return new NextResponse("Unauthorised", { status: 401 })
+    }
+
+    if (!myparams.serverId) {
+      return new NextResponse("Server ID Missing", { status: 401 })
+    }
+
+    const server = await db.server.delete({
+      where: {
+        id: myparams.serverId,
+        profileId: profile.id,
+      },
+      
+    })
+
+    return NextResponse.json(server)
+
+  } catch (error) {
+
+    console.log("[SERVER_ID_DELETE]", error);
+    return new NextResponse("Internal Error", { status: 500 });
+
+  }
+}
