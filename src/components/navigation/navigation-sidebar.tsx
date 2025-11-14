@@ -7,6 +7,7 @@ import { ScrollArea } from "../ui/scroll-area";
 import { NavigationItem } from "./navigation-item";
 import { ModeToggle } from "../mode-toggle";
 import { UserButton } from "@clerk/nextjs";
+import { NavigationConfessionsButton } from "./navigation-confessions-button";
 
 export const NavigationSidebar = async () => {
   const profile = await currentProfile();
@@ -26,9 +27,14 @@ export const NavigationSidebar = async () => {
   });
 
   return (
-    <div className="space-y-4 flex flex-col items-center h-full text-primary w-full dark:bg-[#1E1F22] bg-[#E3E5E8] py-3">
+    <div className="space-y-4 flex flex-col items-center h-full text-primary w-[72px] dark:bg-[#1E1F22] py-3">
+      {/* Top actions */}
       <NavigationAction />
-      <Separator className="h-0.5 bg-zinc-300 dark:bg-zinc-700 rounded-md w-10 mx-auto" />
+      <NavigationConfessionsButton />
+
+      <Separator className="h-[2px] bg-zinc-300 dark:bg-zinc-700 rounded-md w-10 mx-auto" />
+
+      {/* Servers list scrollable */}
       <ScrollArea className="flex-1 w-full">
         {servers.map((server) => (
           <div key={server.id} className="mb-4">
@@ -40,6 +46,8 @@ export const NavigationSidebar = async () => {
           </div>
         ))}
       </ScrollArea>
+
+      {/* Bottom controls */}
       <div className="pb-3 mt-auto flex items-center flex-col gap-y-4">
         <ModeToggle />
         <UserButton
