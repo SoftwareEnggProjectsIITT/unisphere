@@ -11,11 +11,11 @@ export default function ConfessionsLayout({
   return (
     <div className="flex h-screen w-screen">
       {/* Left Sidebar */}
-      <NavigationSidebar />
+      {/* <NavigationSidebar /> */}
 
       {/* Main content */}
-      <main className="flex-1 bg-background-light dark:bg-background-dark overflow-auto p-6">
-        {children}
+      <main className="flex-1 bg-background-light dark:bg-background-dark overflow-auto">
+        <div className="min-h-full">{children}</div>
       </main>
     </div>
   );

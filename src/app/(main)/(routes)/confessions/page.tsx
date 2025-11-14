@@ -32,7 +32,7 @@ export default async function ConfessionsPage() {
   });
 
   return (
-    <main className="min-h-screen bg-background text-foreground p-6">
+    <main className="min-h-full bg-background text-foreground p-6 flex flex-col">
       {/* Hero Section */}
       <section className="max-w-4xl mx-auto h-[50vh] flex flex-col justify-center items-center text-center mb-8">
         <h1 className="text-8xl font-bold">Confessions</h1>
@@ -43,7 +43,9 @@ export default async function ConfessionsPage() {
       </section>
 
       {/* Confession Collage */}
-      <ConfessionCollage confessions={confessions} />
+      <section className="flex-1 w-full max-w-4xl mx-auto">
+        <ConfessionCollage confessions={confessions} />
+      </section>
     </main>
   );
 }
