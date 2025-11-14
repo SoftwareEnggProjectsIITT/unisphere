@@ -3,16 +3,23 @@ import ConfessionCollage from "@/components/confessions/ConfessionCollage";
 import { themes } from "@/lib/themes";
 
 export default async function ConfessionsPage() {
-  const confessionsFromDb = await db.confession.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  // Fetch confessions in random order
+  const confessionsFromDb = await db.$queryRaw<
+    {
+      id: string;
+      content: string;
+      theme: string;
+      bgImage: string;
+      likeCount: number;
+      createdAt: Date;
+    }[]
+  >`SELECT * FROM "Confession" ORDER BY RANDOM()`;
 
+  // Map DB fields to component fields, include a fixed gradient per theme
   const confessions = confessionsFromDb.map((c) => {
     const themeObj = themes.find((t) => t.name === c.theme);
     const gradient =
-      themeObj?.gradients[
-        Math.floor(Math.random() * (themeObj.gradients.length || 1))
-      ] || "linear-gradient(135deg, #ccc, #eee)";
+      themeObj?.gradients[0] || "linear-gradient(135deg, #ccc, #eee)";
 
     return {
       id: c.id,
@@ -21,7 +28,7 @@ export default async function ConfessionsPage() {
       theme: c.theme,
       createdAt: c.createdAt.toISOString(),
       gradient,
-      likeCount: c.likeCount, // for scaling
+      likeCount: c.likeCount,
     };
   });
 

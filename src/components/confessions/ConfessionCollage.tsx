@@ -24,18 +24,19 @@ export default function ConfessionCollage({ confessions }: Props) {
 
   return (
     <>
-      {/* Masonry grid with CSS columns */}
-      <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+      {/* Grid layout for responsive masonry-like effect */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-min">
         {confessions.map((c) => (
-          <ConfessionCard
-            key={c.id}
-            header={c.header}
-            message={c.message}
-            theme={c.theme}
-            gradient={c.gradient}
-            likeCount={c.likeCount}
-            onClick={() => setSelectedConfession(c)}
-          />
+          <div key={c.id} className="w-full">
+            <ConfessionCard
+              header={c.header}
+              message={c.message}
+              theme={c.theme}
+              gradient={c.gradient}
+              likeCount={c.likeCount}
+              onClick={() => setSelectedConfession(c)}
+            />
+          </div>
         ))}
       </div>
 
