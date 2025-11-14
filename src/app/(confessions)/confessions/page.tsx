@@ -15,7 +15,6 @@ export default async function ConfessionsPage() {
     }[]
   >`SELECT * FROM "Confession" ORDER BY RANDOM()`;
 
-  // Map DB fields to component fields, include a fixed gradient per theme
   const confessions = confessionsFromDb.map((c) => {
     const themeObj = themes.find((t) => t.name === c.theme);
     const gradient =
@@ -34,7 +33,16 @@ export default async function ConfessionsPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground p-6">
-      <h1 className="text-3xl font-bold mb-6">Anonymous Confessions</h1>
+      {/* Hero Section */}
+      <section className="max-w-4xl mx-auto h-[50vh] flex flex-col justify-center items-center text-center mb-8">
+        <h1 className="text-8xl font-bold">Confessions</h1>
+        <p className="mt-4 text-2xl text-gray-700 font-medium italic">
+          Secrets spilled, thoughts revealed, and feelings shared… <br />
+          All anonymously, just for you to read.
+        </p>
+      </section>
+
+      {/* Confession Collage */}
       <ConfessionCollage confessions={confessions} />
     </main>
   );
