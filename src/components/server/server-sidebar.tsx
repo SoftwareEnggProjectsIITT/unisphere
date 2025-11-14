@@ -1,9 +1,7 @@
 import { ChannelType } from "@/app/generated/prisma/enums";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { channel } from "diagnostics_channel";
 import { redirect } from "next/navigation";
-import { includes } from "zod";
 import ServerHeader from "./server-header";
 
 interface ServerSidebarProps {
@@ -11,11 +9,10 @@ interface ServerSidebarProps {
 }
 
 const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
-
-  const profile = await currentProfile()
+  const profile = await currentProfile();
 
   if (!profile) {
-    redirect('/')
+    redirect("/");
   }
 
   const server = await db.server.findUnique({
@@ -25,7 +22,7 @@ const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
     include: {
       channels: {
         orderBy: {
-          createdAt: 'asc',
+          createdAt: "asc",
         },
       },
       members: {
@@ -33,30 +30,38 @@ const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
           profile: true,
         },
         orderBy: {
-          role: 'asc',
-        }
+          role: "asc",
+        },
       },
     },
-  })
+  });
 
-  const textChannels = server?.channels.filter((channel) => channel.type === ChannelType.TEXT)
-  const audioChannels = server?.channels.filter((channel) => channel.type === ChannelType.AUDIO)
-  const videoChannels = server?.channels.filter((channel) => channel.type === ChannelType.VIDEO)
-  const members = server?.members.filter((member) => member.profileId !== profile.id)
+  const textChannels = server?.channels.filter(
+    (channel) => channel.type === ChannelType.TEXT,
+  );
+  const audioChannels = server?.channels.filter(
+    (channel) => channel.type === ChannelType.AUDIO,
+  );
+  const videoChannels = server?.channels.filter(
+    (channel) => channel.type === ChannelType.VIDEO,
+  );
+  const members = server?.members.filter(
+    (member) => member.profileId !== profile.id,
+  );
 
   if (!server) {
-    redirect('/')
+    return redirect("/");
   }
 
-  const role = server?.members.find((member) => member.profileId === profile.id)?.role
-
-
+  const role = server?.members.find(
+    (member) => member.profileId === profile.id,
+  )?.role;
 
   return (
     <div className="flex flex-col h-full text-primary w-full dark:bg-[#2B2D31] bg-[F2F3F5]">
       <ServerHeader server={server} role={role!} />
     </div>
-  )
-}
+  );
+};
 
-export default ServerSidebar
+export default ServerSidebar;
