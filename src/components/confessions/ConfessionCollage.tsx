@@ -1,14 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import ConfessionCard from "./ConfessionCard";
+import ConfessionModal from "./ConfessionModal";
 
 interface Confession {
   id: string;
   header: string;
   message: string;
   theme: string;
+  gradient: string;
+  likeCount: number;
   createdAt: string;
-  gradient: string; // new field
 }
 
 interface Props {
@@ -16,18 +19,32 @@ interface Props {
 }
 
 export default function ConfessionCollage({ confessions }: Props) {
+  const [selectedConfession, setSelectedConfession] =
+    useState<Confession | null>(null);
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      {confessions.map((confession) => (
-        <div
-          key={confession.id}
-          className="rounded-xl p-6 shadow-lg text-white min-h-[180px] flex flex-col justify-between"
-          style={{ background: confession.gradient }}
-        >
-          <h2 className="font-bold text-lg mb-2">{confession.header}</h2>
-          <p className="text-sm">{confession.message}</p>
-        </div>
-      ))}
-    </div>
+    <>
+      {/* Masonry grid with CSS columns */}
+      <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+        {confessions.map((c) => (
+          <ConfessionCard
+            key={c.id}
+            header={c.header}
+            message={c.message}
+            theme={c.theme}
+            gradient={c.gradient}
+            likeCount={c.likeCount}
+            onClick={() => setSelectedConfession(c)}
+          />
+        ))}
+      </div>
+
+      {/* Spotlight modal */}
+      <ConfessionModal
+        isOpen={!!selectedConfession}
+        confession={selectedConfession}
+        onClose={() => setSelectedConfession(null)}
+      />
+    </>
   );
 }

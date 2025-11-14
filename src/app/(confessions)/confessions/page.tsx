@@ -7,7 +7,6 @@ export default async function ConfessionsPage() {
     orderBy: { createdAt: "desc" },
   });
 
-  // Map DB fields to component fields, include a random gradient per theme
   const confessions = confessionsFromDb.map((c) => {
     const themeObj = themes.find((t) => t.name === c.theme);
     const gradient =
@@ -17,11 +16,12 @@ export default async function ConfessionsPage() {
 
     return {
       id: c.id,
-      header: c.theme, // can customize header later
-      message: c.content, // content -> message
+      header: c.theme,
+      message: c.content,
       theme: c.theme,
       createdAt: c.createdAt.toISOString(),
       gradient,
+      likeCount: c.likeCount, // for scaling
     };
   });
 
