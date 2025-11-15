@@ -1,11 +1,16 @@
 import { PrismaClient } from "@/app/generated/prisma/client";
 
-declare global {
-  var prisma: PrismaClient | undefined;
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
+
+export const db =
+  globalForPrisma.prisma ?? new PrismaClient({ log: ["warn", "error"] });
+
+if (!globalForPrisma.prisma) {
+  console.log("Prisma Client initialized");
 }
 
-export const db = globalThis.prisma || new PrismaClient();
-
 if (process.env.NODE_ENV !== "production") {
-  global.prisma = db;
+  globalForPrisma.prisma = db;
 }

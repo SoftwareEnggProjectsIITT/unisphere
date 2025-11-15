@@ -15,8 +15,8 @@ interface FileUploadProps {
 export const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
   const [mimeType, setMimeType] = useState<string | undefined>(undefined);
 
-  console.log("value :", value);
-  console.log("type :", mimeType);
+  console.log("value: ", value);
+  console.log("type: ", mimeType);
 
   if (value && mimeType !== "application/pdf") {
     return (
