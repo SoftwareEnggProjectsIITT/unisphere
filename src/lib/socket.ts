@@ -11,7 +11,7 @@ export function initIO(server: HTTPServer) {
     global.io = new SocketIOServer(server, {
       path: "/api/socket/io",
       cors: {
-        origin: "*", // You can restrict this later
+        origin: "*",
         methods: ["GET", "POST"],
       },
     });

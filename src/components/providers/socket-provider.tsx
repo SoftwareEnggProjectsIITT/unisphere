@@ -32,7 +32,6 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
       process.env.NEXT_PUBLIC_SITE_URL ||
       (typeof window !== "undefined" ? window.location.origin : "");
 
-    // Prevent multiple sockets during hot reload
     if (!(window as any)._socket) {
       (window as any)._socket = io(baseUrl, {
         path: "/api/socket/io",
@@ -49,7 +48,6 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
     socketRef.current = socket;
 
     return () => {
-      // Don’t actually disconnect on hot reload; only on full page unload
       socket.off("connect");
       socket.off("disconnect");
     };

@@ -78,7 +78,6 @@ export async function POST(req: Request) {
     try {
       const channelKey = `chat:${channelId}:messages`;
       io?.emit(channelKey, message);
-      console.log("Emitting message:", message);
     } catch (emitError) {
       console.error("Socket emit error:", emitError);
     }
