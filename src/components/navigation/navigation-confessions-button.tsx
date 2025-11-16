@@ -21,8 +21,8 @@ export const NavigationConfessionsButton = () => {
           "relative flex items-center justify-center h-[48px] w-[48px] rounded-[24px] transition-all overflow-hidden mx-3",
           isActive
             ? "bg-primary/10 text-primary rounded-[16px]"
-            : "bg-gray-200 dark:bg-gray-700",
-          "hover:bg-primary/20"
+            : "bg-white dark:bg-gray-700",
+          "hover:bg-primary/20",
         )}
       >
         {/* Solid heart icon */}
