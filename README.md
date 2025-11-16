@@ -1,13 +1,3 @@
-Below is your **complete, polished, full README.md**, rewritten in a professional format with:
-
-✔ SRS-style Introduction (Purpose, Scope, Overview)
-✔ Novelty Section
-✔ Integrated descriptions from your old README
-✔ Cleaner structure & improved clarity
-✔ Sounds like a proper project submission + open-source README
-
-You can copy–paste this directly as your **new README.md**.
-
 ---
 
 # 🌐 **Unisphere — Full-Stack Real-Time Community Platform**
