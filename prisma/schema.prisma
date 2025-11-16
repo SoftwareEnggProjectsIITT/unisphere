@@ -158,3 +158,20 @@ model DirectMessage {
   @@index([memberId])
   @@index([conversationId])
 }
+
+enum Theme {
+  LOVE
+  REGRET
+  FUNNY
+  STRESS
+  RANDOM
+}
+
+model Confession {
+  id        String   @id @default(uuid())
+  content   String   @db.Text
+  theme     Theme
+  bgImage   String   @db.Text
+  likeCount Int      @default(0)
+  createdAt DateTime @default(now())
+}

@@ -6,6 +6,7 @@ const f = createUploadthing();
 
 const handleAuth = async () => {
   const user = await currentUser();
+  console.log("inside middleware");
 
   if (!user) {
     throw new UploadThingError({ code: "FORBIDDEN" });
