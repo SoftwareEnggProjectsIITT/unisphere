@@ -5,6 +5,7 @@ import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { LiveKitRoom, VideoConference, AudioConference } from "@livekit/components-react"
 import { useRouter } from "next/navigation";
+import ChatConference from "./chat/chat-conference";
 
 interface MediaRoomProps {
   chatId: string;
@@ -19,7 +20,7 @@ const MediaRoom = ({ chatId, video, audio, serverId }: MediaRoomProps) => {
 
   useEffect(() => {
     if (!user?.firstName || !user?.lastName) return
-    const name = `${user.firstName}_${user.lastName}`;
+    const name = `${user.firstName} ${user.lastName}`;
     (async () => {
       try {
         const response = await fetch(`/api/livekit?room=${chatId}&username=${name}`)
@@ -43,9 +44,7 @@ const MediaRoom = ({ chatId, video, audio, serverId }: MediaRoomProps) => {
   const router = useRouter()
   return (
     <LiveKitRoom onDisconnected={() => { router.push(`/servers/${serverId}`) }} data-lk-theme="default" connect={true} serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_URL} token={token} audio={audio} video={video}>
-      {!video && <AudioConference />}
-      {video && <VideoConference />}
-
+      <ChatConference video={video} />
     </LiveKitRoom>
   )
 }

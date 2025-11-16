@@ -89,6 +89,9 @@ importers:
       emoji-mart:
         specifier: ^5.6.0
         version: 5.6.0
+      livekit-client:
+        specifier: ^2.15.16
+        version: 2.15.16(@types/dom-mediacapture-record@1.0.22)
       livekit-server-sdk:
         specifier: ^2.14.1
         version: 2.14.1
@@ -720,9 +723,6 @@ packages:
 
   '@livekit/protocol@1.42.2':
     resolution: {integrity: sha512-0jeCwoMJKcwsZICg5S6RZM4xhJoF78qMvQELjACJQn6/VB+jmiySQKOSELTXvPBVafHfEbMlqxUw2UR1jTXs2g==}
-
-  '@livekit/protocol@1.43.0':
-    resolution: {integrity: sha512-WCJ97fa4CBqPDh8pzdszOm/2xmelJ3Dx2vjKBlyb9BzmPQx1LjzVciP6uYFFMCMdrq2l1mjFQBXEz8Z20UCkyw==}
 
   '@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.3':
     resolution: {integrity: sha512-QZHtlVgbAdy2zAqNA9Gu1UpIuI8Xvsd1v8ic6B2pZmeFnFcMWiPLfWXh7TVw4eGEZ/C9TH281KwhVoeQUKbyjw==}
@@ -3929,10 +3929,6 @@ snapshots:
     dependencies:
       '@bufbuild/protobuf': 1.10.1
 
-  '@livekit/protocol@1.43.0':
-    dependencies:
-      '@bufbuild/protobuf': 1.10.1
-
   '@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.3':
     optional: true
 
@@ -5958,7 +5954,7 @@ snapshots:
   livekit-server-sdk@2.14.1:
     dependencies:
       '@bufbuild/protobuf': 1.10.1
-      '@livekit/protocol': 1.43.0
+      '@livekit/protocol': 1.42.2
       camelcase-keys: 9.1.3
       jose: 5.10.0
 
