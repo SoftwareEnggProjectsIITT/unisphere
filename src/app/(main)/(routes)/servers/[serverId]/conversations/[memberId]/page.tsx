@@ -10,11 +10,13 @@ import { redirect } from "next/navigation";
 
 interface MemberIdPageProps {
   params: Promise<{ serverId: string; memberId: string }>;
-  searchParams: { video?: boolean }
+  searchParams: Promise<{ video?: boolean }>;
 }
 
 const MemberIdPage = async ({ params, searchParams }: MemberIdPageProps) => {
   const myParams = await params;
+  const mySearchParams = await searchParams;
+
   const profile = await currentProfile();
 
   if (!profile) {
@@ -57,10 +59,10 @@ const MemberIdPage = async ({ params, searchParams }: MemberIdPageProps) => {
         serverId={myParams.serverId}
         type="conversation"
       />
-      {searchParams.video && (
-        <MediaRoom chatId={conversation.id} video={true} audio={true} />
+      {mySearchParams.video && (
+        <MediaRoom serverId={myParams.serverId} chatId={conversation.id} video={true} audio={true} />
       )}
-      {!searchParams.video && (
+      {!mySearchParams.video && (
         <>
           <ChatMessages
             member={currentMember}
