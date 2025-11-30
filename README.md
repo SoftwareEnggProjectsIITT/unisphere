@@ -9,6 +9,14 @@ Unisphere aims to solve the real problems faced by students on campus: scattered
 
 ---
 
+# **How to run the project?**
+
+This project is deployed on the link: https://unisphere-production-64d4.up.railway.app
+
+You may join our testing channel at using this link: https://unisphere-production-64d4.up.railway.app/invite/90e2f329-8443-4922-9167-029f2da5caa0
+
+---
+
 # **1. Introduction**
 
 ## **1.1 Purpose**
